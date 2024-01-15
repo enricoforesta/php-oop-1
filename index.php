@@ -37,8 +37,8 @@ class Movie
     }
 }
 
-$chuck = new Movie("chuck", "azione", "120");
-$heidi = new Movie("heidi", "fantasy", "80");
+$chuck = new Movie("chuck", ["azione", "comico"], "120");
+$heidi = new Movie("heidi", ["fantasy", "horror"], "80");
 var_dump($chuck);
 var_dump($heidi);
 
@@ -57,7 +57,9 @@ var_dump($heidi);
         <li>
             <div>
                 <h2>Titolo: <?php echo $chuck->title ?></h2>
-                <h3>Genere: <?php echo $chuck->type ?></h3>
+                <h3>Genere: <?php foreach ($chuck->type as $type) {
+                                echo $type . " ";
+                            } ?></h3>
                 <h4>Durata: <?php echo $chuck->duration ?> min</h4>
                 <p>Voto: <?php echo $chuck->vote ?></p>
             </div>
@@ -65,7 +67,9 @@ var_dump($heidi);
         <li>
             <div>
                 <h2>Titolo: <?php echo $heidi->title ?></h2>
-                <h3>Genere: <?php echo $heidi->type ?></h3>
+                <h3>Genere: <?php foreach ($heidi->type as $type) {
+                                echo $type . " ";
+                            } ?></h3>
                 <h4>Durata: <?php echo $heidi->duration ?> min</h4>
                 <p>Voto: <?php echo $heidi->vote ?></p>
             </div>
