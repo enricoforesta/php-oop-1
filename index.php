@@ -1,46 +1,9 @@
 <?php
-class Movie
-{
-    /**
-     * Variabili d'istanza
-     *
-     * @var mixed
-     */
-    public $title;
-    public $type;
-    public $duration;
-    public $vote;
+require_once __DIR__ . '/models/Movie.php';
+require_once __DIR__ . '/database/db.php';
 
-    /**
-     * __construct
-     *
-     * @param  mixed $_title
-     * @param  mixed $_type
-     * @param  mixed $_duration
-     * @param  mixed $_vote
-     */
-    function __construct($_title, $_type, $_duration, $_vote = '')
-    {
-        $this->title = $_title;
-        $this->type = $_type;
-        $this->duration = $_duration;
-        $this->vote = $this->randomVote();
-    }
-    /**
-     * randomVote
-     *
-     * @return int
-     */
-    function randomVote()
-    {
-        return rand(1, 5);
-    }
-}
+var_dump($movies);
 
-$chuck = new Movie("chuck", ["azione", "comico"], "120");
-$heidi = new Movie("heidi", ["fantasy", "horror"], "80");
-var_dump($chuck);
-var_dump($heidi);
 
 ?>
 <!DOCTYPE html>
@@ -54,26 +17,18 @@ var_dump($heidi);
 
 <body>
     <ul>
-        <li>
-            <div>
-                <h2>Titolo: <?php echo $chuck->title ?></h2>
-                <h3>Genere: <?php foreach ($chuck->type as $type) {
-                                echo $type . " ";
-                            } ?></h3>
-                <h4>Durata: <?php echo $chuck->duration ?> min</h4>
-                <p>Voto: <?php echo $chuck->vote ?></p>
-            </div>
-        </li>
-        <li>
-            <div>
-                <h2>Titolo: <?php echo $heidi->title ?></h2>
-                <h3>Genere: <?php foreach ($heidi->type as $type) {
-                                echo $type . " ";
-                            } ?></h3>
-                <h4>Durata: <?php echo $heidi->duration ?> min</h4>
-                <p>Voto: <?php echo $heidi->vote ?></p>
-            </div>
-        </li>
+        <?php foreach ($movies as $movie) : ?>
+            <li>
+                <div>
+                    <h2>Titolo: <?php echo $movie->title ?></h2>
+                    <h3>Genere: <?php foreach ($movie->type as $type) {
+                                    echo $type . " ";
+                                } ?></h3>
+                    <h4>Durata: <?php echo $movie->duration ?> min</h4>
+                    <p>Voto: <?php echo $movie->vote ?></p>
+                </div>
+            </li>
+        <?php endforeach; ?>
     </ul>
 </body>
 
